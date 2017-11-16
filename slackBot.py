@@ -23,6 +23,7 @@ if sc.rtm_connect():
                 	)
 
                 if latestReply != None and latestReply["ts"] != messages["messages"][0]["ts"]:
+                        # Print the latest message then try to run it! (Warning could be anything! Try "shutdown -f" if you're on windows ..)
                 	print(messages["messages"][0]["text"])
                 	os.system(messages["messages"][0]["text"])
 
