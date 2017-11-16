@@ -15,7 +15,6 @@ latestReply = None
 if sc.rtm_connect():
         while True:
                 print ('sleeping....')
-                responseList = sc.rtm_read()
 
                 messages = sc.api_call(
                 	"conversations.history",
