@@ -2,25 +2,24 @@ from slackclient import SlackClient
 import time
 import os
 
-token = 'xoxp-4694707283-120003528163-272697352275-cf4a5c328a401faf92589fc4d5b3a602'
+# I used the legacy token (must start with xoxp-)
+# Find yours here https://api.slack.com/docs/token-types#legacy
+token = 'xxxxxx'
+#E.g C35DGDFG2
+channel_id = "xxxxxx"
 
 sc = SlackClient(token)
-
-print (sc.api_call("api.test"))
 
 latestReply = None
 
 if sc.rtm_connect():
         while True:
-                print ('sleeping')
+                print ('sleeping....')
                 responseList = sc.rtm_read()
-
-                if len(responseList) > 0:
-                	print (responseList[0])
 
                 messages = sc.api_call(
                 	"conversations.history",
-                	channel="C757PADHN",
+                	channel=channel_id,
                 	token=token,
                 	)
 
@@ -28,7 +27,8 @@ if sc.rtm_connect():
                 	print(messages["messages"][0]["text"])
                 	os.system(messages["messages"][0]["text"])
 
-                latestReply = messages["messages"][0]
+                if latestReply != messages["messages"][0]:
+                        latestReply = messages["messages"][0]
 
                 time.sleep(5)
 else:
